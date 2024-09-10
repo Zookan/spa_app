@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Races</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <nav>
+            <ul class="main-nav">
+              <li><a href="racesPage.html">Races</a></li>
+              <li><a href="animalsPage.html">Animaux</a></li>
+              <li><a href="admin.html">Gestion</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="list-section">
+            <h1>Liste des races</h1>
+            <ul id="race-list"></ul>
+            <div id="pagination">
+                <button id="prev-page">Précédent</button>
+                <span id="page-info"></span>
+                <button id="next-page">Suivant</button>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h1>Détails de la race</h1>
+            <div id="race-details">
+                <p>Sélectionnez une race dans la liste pour voir les détails.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="races.js"></script>
+</body>
+</html>

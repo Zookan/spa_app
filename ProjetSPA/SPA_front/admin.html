@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 0px;
+        }
+
+        /* Style de la barre de navigation */
+        nav {
+            background-color: #333; /* Couleur de fond de la barre de navigation */
+            padding: 0 20px; /* Espacement horizontal */
+        }
+
+        ul.main-nav {
+            list-style: none; /* Supprimer les puces de la liste */
+            margin: 0; /* Supprimer la marge par défaut */
+            padding: 0; /* Supprimer le padding par défaut */
+            display: flex; /* Afficher les éléments de navigation horizontalement */
+            align-items: center; /* Aligner les éléments verticalement */
+        }
+
+        ul.main-nav li {
+                margin: 0 15px; /* Espacement horizontal entre les éléments */
+        }
+
+        ul.main-nav li a {
+            color: #fff; /* Couleur du texte */
+            text-decoration: none; /* Supprimer la décoration de texte */
+            font-size: 16px; /* Taille de la police */
+            padding: 15px 20px; /* Espacement intérieur des liens */
+            display: block; /* Assurer que le padding est pris en compte */
+            transition: background-color 0.3s; /* Transition pour l'effet de survol */
+        }
+
+        ul.main-nav li a:hover {
+            background-color: #555; /* Couleur de fond au survol */
+            border-radius: 4px; /* Coins arrondis */
+        }
+
+        ul.main-nav .push {
+            margin-left: auto; /* Pousser l'élément vers la droite */
+        }
+
+        h2 {
+            color: #333;
+            cursor: pointer;
+        }
+
+        form {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            display: none; /* Formulaires rétractés par défaut */
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, textarea {
+            width: 99%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f1f1f1;
+        }
+
+        .toggle-btn {
+            margin-bottom: 10px;
+            color: #007bff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="racesPage.html">Races</a></li>
+                <li><a href="animalsPage.html">Animaux</a></li>
+                <li><a href="admin.html">Gestion</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div style="margin: 10px;">
+
+        <!-- Section pour Race -->
+        <h2 style="border-style: solid; border-color: #007bff; border-radius: 5px; padding: 5px; background-color: #007bff38;">
+            Afficher toutes les Races (GET /races)</h2>
+        <button id="getAllBtn" style="display: none;">Afficher toutes les Races</button>
+    
+        <h2 style="border-style: solid; border-color: #28a745; border-radius: 5px; padding: 5px; background-color: #28a7463f;">
+            Créer une Race (POST /race/create)</h2>
+        <form id="createForm">
+            <label for="name">Nom:</label>
+            <input type="text" id="name" name="name" required>
+    
+            <label for="espece">Espèce:</label>
+            <input type="text" id="espece" name="espece" required>
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+    
+            <label for="picture">Image (URL):</label>
+            <input type="text" id="picture" name="picture">
+    
+            <button type="submit">Créer Race</button>
+        </form>
+    
+        <h2 style="border-style: solid; border-color: #007bff; border-radius: 5px; padding: 5px; background-color: #007bff38;">
+            Rechercher une Race (GET /race/{id})</h2>
+        <form id="getForm">
+            <label for="getId">ID de la Race:</label>
+            <input type="text" id="getId" name="getId" required>
+            <button type="submit">Chercher Race</button>
+        </form>
+    
+        <h2 style="border-style: solid; border-color: #dc3545; border-radius: 5px; padding: 5px; background-color: #dc35453f;">
+            Supprimer une Race (DELETE /race/{id})</h2>
+        <form id="deleteForm">
+            <label for="deleteId">ID de la Race à supprimer:</label>
+            <input type="text" id="deleteId" name="deleteId" required>
+            <button type="submit">Supprimer Race</button>
+        </form>
+    
+        <h2 style="border-style: solid; border-color: #d66b1e; border-radius: 5px; padding: 5px; background-color: #d66b1e3f;">
+            Mettre à jour une Race (PUT /race/update)</h2>
+        <form id="updateForm">
+            <label for="updateId">ID de la Race:</label>
+            <input type="text" id="updateId" name="updateId" required>
+    
+            <label for="updateName">Nom:</label>
+            <input type="text" id="updateName" name="updateName" required>
+    
+            <label for="updateEspece">Espèce:</label>
+            <input type="text" id="updateEspece" name="updateEspece" required>
+    
+            <label for="updateDescription">Description:</label>
+            <textarea id="updateDescription" name="updateDescription" required></textarea>
+    
+            <label for="updatePicture">Image (URL):</label>
+            <input type="text" id="updatePicture" name="updatePicture">
+    
+            <button type="submit">Mettre à jour Race</button>
+        </form>
+    
+        <!-- Section pour Animal -->
+        <h2 style="border-style: solid; border-color: #007bff; border-radius: 5px; padding: 5px; background-color: #007bff38;">
+            Afficher tous les Animaux (GET /animals)</h2>
+        <button id="getAllAnimalsBtn" style="display: none;">Afficher tous les Animaux</button>
+
+        <h2 style="border-style: solid; border-color: #28a745; border-radius: 5px; padding: 5px; background-color: #28a7463f;">
+            Créer un Animal (POST /animal/create)</h2>
+        <form id="createAnimalForm">
+            <label for="animalName">Nom:</label>
+            <input type="text" id="animalName" name="animalName" required>
+
+            <label for="age">Âge:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="race">Race:</label>
+            <input type="text" id="race" name="race" required>
+
+            <label for="color">Couleur:</label>
+            <input type="text" id="color" name="color" required>
+
+            <label for="sex">Sexe:</label>
+            <input type="text" id="sex" name="sex" required>
+
+             <label for="vaccined">Vacciné (true/false):</label>
+            <input type="text" id="vaccined" name="vaccined" required>
+
+            <label for="animalDescription">Description:</label>
+            <textarea id="animalDescription" name="animalDescription" required></textarea>
+
+            <label for="animalPicture">Image (URL):</label>
+            <input type="text" id="animalPicture" name="animalPicture">
+
+            <button type="submit">Créer Animal</button>
+        </form>
+
+        <h2 style="border-style: solid; border-color: #007bff; border-radius: 5px; padding: 5px; background-color: #007bff38;">
+            Rechercher un Animal (GET /animal/{id})</h2>
+        <form id="getAnimalForm">
+            <label for="getAnimalId">ID de l'Animal:</label>
+            <input type="text" id="getAnimalId" name="getAnimalId" required>
+            <button type="submit">Chercher Animal</button>
+        </form>
+
+        <h2 style="border-style: solid; border-color: #dc3545; border-radius: 5px; padding: 5px; background-color: #dc35453f;">
+            Supprimer un Animal (DELETE /animal/{id})</h2>
+        <form id="deleteAnimalForm">
+            <label for="deleteAnimalId">ID de l'Animal à supprimer:</label>
+            <input type="text" id="deleteAnimalId" name="deleteAnimalId" required>
+            <button type="submit">Supprimer Animal</button>
+        </form>
+
+        <h2 style="border-style: solid; border-color: #d66b1e; border-radius: 5px; padding: 5px; background-color: #d66b1e3f;">
+            Mettre à jour un Animal (PUT /animal/update)</h2>
+        <form id="updateAnimalForm">
+            <label for="updateAnimalId">ID de l'Animal:</label>
+            <input type="text" id="updateAnimalId" name="updateAnimalId" required>
+
+            <label for="updateAnimalName">Nom:</label>
+            <input type="text" id="updateAnimalName" name="updateAnimalName" required>
+
+            <label for="updateAge">Âge:</label>
+            <input type="number" id="updateAge" name="updateAge" required>
+
+            <label for="updateRace">Race:</label>
+            <input type="text" id="updateRace" name="updateRace" required>
+
+            <label for="updateColor">Couleur:</label>
+            <input type="text" id="updateColor" name="updateColor" required>
+
+            <label for="updateSex">Sexe:</label>
+            <input type="text" id="updateSex" name="updateSex" required>
+
+            <label for="updateVaccined">Vacciné (true/false):</label>
+            <input type="text" id="updateVaccined" name="updateVaccined" required>
+
+            <label for="updateAnimalDescription">Description:</label>
+            <textarea id="updateAnimalDescription" name="updateAnimalDescription" required></textarea>
+
+            <label for="updateAnimalPicture">Image (URL):</label>
+            <input type="text" id="updateAnimalPicture" name="updateAnimalPicture">
+
+            <button type="submit">Mettre à jour Animal</button>
+        </form>
+
+        <div class="result" id="result"></div>
+
+    </div>
+<script src="admin.js"></script>
+</body>
+</html>

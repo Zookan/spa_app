@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0px;
+}
+
+/* Style de la barre de navigation */
+nav {
+    background-color: #333; /* Couleur de fond de la barre de navigation */
+    padding: 0 20px; /* Espacement horizontal */
+}
+
+ul.main-nav {
+    list-style: none; /* Supprimer les puces de la liste */
+    margin: 0; /* Supprimer la marge par défaut */
+    padding: 0; /* Supprimer le padding par défaut */
+    display: flex; /* Afficher les éléments de navigation horizontalement */
+    align-items: center; /* Aligner les éléments verticalement */
+}
+
+ul.main-nav li {
+    margin: 0 15px; /* Espacement horizontal entre les éléments */
+}
+
+ul.main-nav li a {
+    color: #fff; /* Couleur du texte */
+    text-decoration: none; /* Supprimer la décoration de texte */
+    font-size: 16px; /* Taille de la police */
+    padding: 15px 20px; /* Espacement intérieur des liens */
+    display: block; /* Assurer que le padding est pris en compte */
+    transition: background-color 0.3s; /* Transition pour l'effet de survol */
+}
+
+ul.main-nav li a:hover {
+    background-color: #555; /* Couleur de fond au survol */
+    border-radius: 4px; /* Coins arrondis */
+}
+
+ul.main-nav .push {
+    margin-left: auto; /* Pousser l'élément vers la droite */
+}
+
+/* Style container */
+.container {
+    display: flex;
+    width: 80%;
+    gap: 20px;
+    margin: 20px;
+}
+
+.list-section {
+    flex: 1;
+}
+
+.details-section {
+    flex: 1;
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+}
+
+#race-list {
+    list-style: none;
+    padding: 0;
+}
+
+#animal-list {
+    list-style: none;
+    padding: 0;
+}
+
+#imgAnimal {
+    width: 60%;
+}
+
+.race-item {
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.race-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.race-details {
+    padding: 10px;
+}
+
+#pagination {
+    margin-top: 20px;
+}
+
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
